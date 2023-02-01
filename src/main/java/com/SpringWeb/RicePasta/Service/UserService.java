@@ -6,7 +6,9 @@ package com.SpringWeb.RicePasta.Service;
 import com.SpringWeb.RicePasta.Mapper.UserMapper;
 import com.SpringWeb.RicePasta.VO.UserVO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,23 +18,31 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
-    // 회원가입 시 저장시간을 넣어줄 DateTime형
+public class UserService implements UserDetailsService {
     SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:sss");
     Date time = new Date();
     String localTime = format.format(time);
 
-    @Autowired
-    UserMapper userMapper;
+    private final UserMapper userMapper;
 
     @Transactional
-    public void joinUser(UserVO userVO){
+    public void joinUser(UserVO userVo){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        userVO.setUserPw(passwordEncoder.encode(userVO.getUserPw()));
-        userVO.setUserAuth("USER");
-        userVO.setAppendDate(localTime);
-        userVO.setUpdateDate(localTime);
-        userMapper.saveUser(userVO);
+        userVo.setUserPw(passwordEncoder.encode(userVo.getPassword()));
+        userVo.setUserAuth("USER");
+        userVo.setAppendDate(localTime);
+        userVo.setUpdateDate(localTime);
+        userMapper.saveUser(userVo);
    }
+
+    @Override
+    public UserVO loadUserByUsername(String userId) throws UsernameNotFoundException {
+        //여기서 받은 유저 패스워드와 비교하여 로그인 인증
+        UserVO userVo = userMapper.getUserAccount(userId);
+        if (userVo == null){
+            throw new UsernameNotFoundException("User not authorized.");
+        }
+        return userVo;
+    }
 
 }

@@ -3,6 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.SpringWeb.RicePasta.Mapper.UserMapper">
+    <!-- 로그인 -->
+    <select id="getUserAccount" resultType="com.SpringWeb.RicePasta.VO.UserVO">
+        SELECT * FROM USER
+        WHERE USERID= #{userID}
+    </select>
 <!-- 회원가입 -->
     <insert id="saveUser" parameterType="com.SpringWeb.RicePasta.VO.UserVO">
         INSERT INTO USER(USERID,USERPASSWORD,USERNAME,USERPHONENUM,USERAUTH,APPENDDATE,UPDATEDATE)
