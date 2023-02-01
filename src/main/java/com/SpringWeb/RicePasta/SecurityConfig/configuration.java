@@ -11,10 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @EnableWebSecurity //spring security 를 적용한다는 Annotation
-@Service
-@RequiredArgsConstructor
 public class configuration extends WebSecurityConfigurerAdapter {
-    private final UserService userService;
+    @Autowired
+    UserService userService;
     /**
      * 규칙 설정
      * @param http

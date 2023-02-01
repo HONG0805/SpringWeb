@@ -3,17 +3,20 @@ package com.SpringWeb.RicePasta.Controller;
 import com.SpringWeb.RicePasta.Service.UserService;
 import com.SpringWeb.RicePasta.VO.UserVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-@Service
 public class UserController {
     private final UserService userService;
 
