@@ -1,21 +1,28 @@
 package org.zerock.config;
 
+import javax.servlet.ServletRegistration;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[] { RootConfig.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return null;
+		return new Class[] { ServletConfig.class };
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return null;
+		return new String[] { "/" };
+	}
+
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		registration.setInitParameter("throwExceptionIfNotHandlerFound", "true");
 	}
 }
