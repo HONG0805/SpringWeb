@@ -7,7 +7,7 @@
 
 ## **Stacks**  
  ### **프론트앤드**
-  **HTML/CSS 프레임워크** : <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+ ### **HTML/CSS 프레임워크** : <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
 
   
   **자바스크립트 라이브러리** : <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
