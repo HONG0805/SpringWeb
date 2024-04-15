@@ -19,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -70,7 +71,6 @@ public class UploadController {
 		log.info("upload ajax");
 	}
 
-
 	private String getFolder() {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -81,7 +81,6 @@ public class UploadController {
 
 		return str.replace("-", File.separator);
 	}
-
 
 	private boolean checkImageType(File file) {
 
@@ -97,8 +96,8 @@ public class UploadController {
 
 		return false;
 	}
-
-
+	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
@@ -159,7 +158,7 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
-	@GetMapping("/display")	
+	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
 
@@ -183,7 +182,6 @@ public class UploadController {
 		return result;
 	}
 
-
 	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName) {
@@ -204,17 +202,17 @@ public class UploadController {
 
 			String downloadName = null;
 
-			if ( userAgent.contains("Trident")) {
+			if (userAgent.contains("Trident")) {
 				log.info("IE browser");
 				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8").replaceAll("\\+", " ");
-			}else if(userAgent.contains("Edge")) {
+			} else if (userAgent.contains("Edge")) {
 				log.info("Edge browser");
-				downloadName =  URLEncoder.encode(resourceOriginalName,"UTF-8");
-			}else {
+				downloadName = URLEncoder.encode(resourceOriginalName, "UTF-8");
+			} else {
 				log.info("Chrome browser");
 				downloadName = new String(resourceOriginalName.getBytes("UTF-8"), "ISO-8859-1");
 			}
-			
+
 			log.info("downloadName: " + downloadName);
 
 			headers.add("Content-Disposition", "attachment; filename=" + downloadName);
@@ -225,8 +223,8 @@ public class UploadController {
 
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
-	
 
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {
@@ -259,6 +257,5 @@ public class UploadController {
 		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 
 	}
-	
 
 }

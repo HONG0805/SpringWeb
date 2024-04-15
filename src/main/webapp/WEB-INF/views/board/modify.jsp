@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <%@include file="../includes/header.jsp"%>
 <div class="row">
@@ -18,6 +20,9 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<form role="form" action="/board/modify" method="post">
+				
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				
 					<input type='hidden' name='pageNum'
 						value='<c:out value="${cri.pageNum }"/>'> <input
 						type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
@@ -53,8 +58,13 @@
 							value='<fmt:formatDate pattern = "yyyy/MM/dd" value="${board.updateDate}"/>'
 							readonly="readonly">
 					</div>
-					<button type="submit" data-oper="modify" class="btn btn-default">Modify</button>
-					<button type="submit" data-oper="remove" class="btn btn-danger">Remove</button>
+					<sec:authentication property="principal" var="pinfo"/>
+					<sec:authorize access="isAuthenticated()">
+					<c:if test="${pinfo.username eq board.writer}">
+  					<button type="submit" data-oper='modify' class="btn btn-default">Modify</button>
+  					<button type="submit" data-oper='remove' class="btn btn-danger">Remove</button>
+					</c:if>
+					</sec:authorize>
 					<button type="submit" data-oper="list" class="btn btn-info">List</button>
 				</form>
 			</div>
@@ -247,29 +257,42 @@
         }
         
         
-        $("input[type='file']").change(function(e) {
-            var formData = new FormData();
-            var inputFile = $("input[name='uploadFile']");
-            var files = inputFile[0].files;
-            for (var i = 0; i < files.length; i++) {
-                if (!checkExtension(files[i].name, files[i].size)) {
-                    return false;
-                }
-                formData.append("uploadFile", files[i]);
-            }
-            $.ajax({
-                url: '/uploadAjaxAction',
-                processData: false,
-                contentType: false,
-                data: formData,
-                type: 'POST',
-                dataType: 'json',
-                success: function(result) {
-                    console.log(result);
-                    showUploadResult(result); //업로드 결과 처리 함수 
-                }
-            }); //$.ajax
-        });
+        var csrfHeaderName ="${_csrf.headerName}"; 
+        var csrfTokenValue="${_csrf.token}";
+
+        
+        $("input[type='file']").change(function(e){
+        	
+
+			var formData = new FormData();
+          	var inputFile = $("input[name='uploadFile']");
+          	var files = inputFile[0].files;
+			
+          	for(var i = 0; i < files.length; i++){
+
+            	if(!checkExtension(files[i].name, files[i].size) ){
+              	return false;
+            	}
+            	formData.append("uploadFile", files[i]);
+            
+          	}
+          
+          	$.ajax({
+            	url: '/uploadAjaxAction',
+            	processData: false, 
+            	contentType: false,data: 
+            	formData,type: 'POST',
+            	beforeSend: function(xhr) {
+                	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+            	},
+            	dataType:'json',
+             	success: function(result){
+                	console.log(result); 
+      		  		showUploadResult(result); //업로드 결과 처리 함수 
+            	}
+          	}); //$.ajax
+          
+        });   
 
         function showUploadResult(uploadResultArr) {
             if (!uploadResultArr || uploadResultArr.length == 0) {

@@ -1,13 +1,12 @@
 package org.zerock.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @ComponentScan(basePackages = { "org.zerock.controller" })
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class ServletConfig implements WebMvcConfigurer {
 
 	@Override
@@ -29,18 +29,14 @@ public class ServletConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-	}
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("forward:/board/list");
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
 	@Bean
 	public MultipartResolver multipartResolver() {
 		StandardServletMultipartResolver resolver = new StandardServletMultipartResolver();
-
 		return resolver;
 	}
+
 }
