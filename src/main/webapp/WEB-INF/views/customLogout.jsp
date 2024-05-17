@@ -88,6 +88,8 @@
 		});
 	</script>
 
+
+
 	<c:if test="${param.logout != null}">
 		<script>
 			$(document).ready(function() {
