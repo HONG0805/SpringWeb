@@ -39,5 +39,4 @@ public class ServletConfig implements WebMvcConfigurer {
 		return resolver;
 	}
 
-	
 }
