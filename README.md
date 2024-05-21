@@ -37,11 +37,29 @@
 # :pushpin: **기능 소개**
 
 ## **메인메뉴**
-  ![image](https://github.com/HONG0805/SpringWeb/assets/112541200/cd3c2217-a6d0-423c-a15f-50d69fa7e858)
+  <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/cd3c2217-a6d0-423c-a15f-50d69fa7e858" width=400/>
+
+## **게시물 작성(수정/삭제)**
+  <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/bcf3bb03-a968-422b-8655-9ea782540bbe" width=345/> <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/acc8ee01-3063-44b0-9d8a-a82a08948eca" width=350/> <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/e63cdc4f-6a3d-43d5-b642-516dc2ceeb31" width=300/>
+  
+## **게시물 댓글작성(수정/삭제)**
+<img src="https://github.com/HONG0805/SpringWeb/assets/112541200/0a1c1c90-b70b-42d0-bf7a-647cc6b46984" width=330/> <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/05974906-2e21-4bc4-9b03-0dc3d7cc3033" width=300/> <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/e329a310-7649-45ae-b762-be0066c383e5" width=310/>
+
+
+## **게시물 검색**
+<img src="https://github.com/HONG0805/SpringWeb/assets/112541200/72fce6f2-d639-420b-9ce8-1cfcdd72af7b" width=290/> <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/7b75acca-33b6-4ebd-9296-e07df3835041" width=360/> <img src="https://github.com/HONG0805/SpringWeb/assets/112541200/458501d0-0e2a-49bc-bfdd-2e7a1a089014" width=350/>
+
+## **로그인**
+**remember me : 자동 로그인 기능**  
+<img src="https://github.com/HONG0805/SpringWeb/assets/112541200/101df4c8-f948-40d3-b1aa-71a5eb5cfcc7"/> ![image](https://github.com/HONG0805/SpringWeb/assets/112541200/f5ab7643-b5ef-4a7c-916c-2d8f40a8a74e)
+
+<img src="https://github.com/HONG0805/SpringWeb/assets/112541200/2a2727dd-034f-4c34-a97b-e26ba7d2fc64"/> ![image](https://github.com/HONG0805/SpringWeb/assets/112541200/b56d0e83-c7a5-4aac-94bb-95f1a1af205d)
+
+
 
   
 # :clipboard: **현재 진행 상황**  
-현재는 주요 기능들의 구현과 테스트를 진행 중에 있으며, 프로젝트의 안정성을 높이기 위해 지속적으로 개선 작업을 진행하고 있습니다.
+현재는 프로젝트의 안정성을 높이기 위해 지속적으로 개선 작업을 진행하고 있습니다.
  ***
  
 # :date: **다음 단계**  
