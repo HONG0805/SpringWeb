@@ -7,36 +7,71 @@
   
  ***
  
-# **📚Stacks**  
- ## **프론트앤드**
- **HTML/CSS 프레임워크** : <img src="https://img.shields.io/badge/bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white">
- 
-  
-  **자바스크립트 라이브러리** : <img src="https://img.shields.io/badge/jquery-0769AD?style=flat-square&logo=jquery&logoColor=white" >
- ## **백엔드**
-  **언어** : <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white">  
-  
-  
-  **데이터베이스** : <img src="https://img.shields.io/badge/oracle-F80000?style=flat-square&logo=oracle&logoColor=white"> <img src="https://img.shields.io/badge/mysql-4479A1?style=flat-square&logo=mysql&logoColor=white">
-  
+# 📚 **기술 스택 (Tech Stack)**  
 
- 
-  **웹 프레임워크** : <img src="https://img.shields.io/badge/spring-6DB33F?style=flat-square&logo=spring&logoColor=white">
- ## **버전 관리**
-  <img src="https://img.shields.io/badge/github-181717?style=flat-square&logo=github&logoColor=white">
+## 🎨 **Frontend**  
+🖥️ **Markup & Styling**  
+- HTML5 / CSS3  
+- Bootstrap (CSS 프레임워크)  
+
+⚡ **JavaScript & Libraries**  
+- JavaScript (ES6)  
+- jQuery (DOM 조작 및 이벤트 핸들링)  
+-  Ajax (비동기 데이터 처리)  
+
+🛠️ **Template Engine**  
+- Thymeleaf (Spring 기반 템플릿 엔진)  
+
+---
+
+## 🏗️ **Backend**  
+🖥️ **Programming Language**  
+-  Java 8+  
+
+🚀 **Framework & Tools**  
+- 🌿 Spring Framework  
+  -  Spring MVC (Model-View-Controller 패턴 적용)  
+  -  Spring Security (인증 및 권한 관리)  
+  -  MyBatis (SQL 매핑 프레임워크)  
+
+💾 **Database**  
+-  Oracle  
+-  MySQL  
+
+🔗 **API & Logging**  
+-  RESTful API 설계  
+-  Logback / SLF4J (로그 관리)  
+
+---
+
+## 🌐 **Server & Deployment**  
+-  **Web Server:** Apache Tomcat  
+-  **운영 환경:** 로컬 환경 (운영 서버 배포 미적용)  
+
+---
+
+## 🛠️ **Etc.**  
+-  **Version Control:** Git & GitHub  
+-  **Dependency Management:** Maven  
+-  **Testing:** JUnit  
+
+
   
   ***
  
 # :pushpin: **주요 기능**
 
  ### :star: **게시판 관리 기능**  
- 사용자가 게시물을 작성, 수정, 삭제할 수 있는 기능을 제공합니다.  
+ 사용자가 게시물을 작성, 수정, 삭제할 수 있는 기능을 제공합니다. 
+ 페이징 처리를 적용하여 대량의 데이터도 효율적으로 관리할 수 있도록 하였습니다.
  ### :star: **인증 및 권한 관리**  
- SpringSecurity를 이용하여 사용자의 인증 및 권한을 관리하여 안전한 웹 사용을 보장합니다.  
+ Spring Security를 이용하여 비밀번호 암호화(BCrypt), CSRF 방어, 세션 관리, 자동 로그인(Remember-Me) 기능을 구현하였습니다. 
+ 관리자와 일반 사용자 역할(Role) 분리를 통해 보안성을 강화하였습니다. 
  ### :star: **댓글 기능**  
- 게시물에 대한 댓글을 작성하고 관리할 수 있는 기능을 제공하며 Ajaxr기술을 활용하여 페이지 새로고침 없이 동적으로 업데이트되어 사용자들이 쉽고 빠르게 상호작용할 수 있습니다.  
+ 게시물에 대한 댓글을 작성, 수정, 삭제할 수 있으며, Ajax 기술을 활용하여 페이지 새로고침 없이 동적 업데이트가 가능하도록 구현하였습니다.
+ 이를 통해 사용자 경험(UX)을 향상시켰습니다. 
  ### :star: **검색 기능**  
- 게시물을 검색할 수 있느 기능을 제공하여 사용자의 편의성을 높입니다.  
+ 게시물의 제목, 내용, 작성자 등을 기준으로 검색할 수 있으며, 페이징 처리를 적용하여 검색 결과를 효율적으로 확인할 수 있도록 구현하였습니다.
   ***
 
 # :pushpin: **기능 소개**
